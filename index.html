@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Manga Segmentation Annotations.">
+  <meta name="keywords" content="Manga Segmentation, Manga109 Dataset, Segment Anything Model">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advancing Manga Analysis: Comprehensive Segmentation Annotations for the Manga109 Dataset</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-32WKMF8H31"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-32WKMF8H31');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" type="image/png" href="./static/images/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <base target="_blank">
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Advancing Manga Analysis: <br/> Comprehensive Segmentation Annotations for the Manga109 Dataset</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://hyliu.org/">Minshan Xie</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://doubiiu.github.io/">Jian Lin</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://msxie92.github.io/">Hanyuan Liu</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://moeka.me/">Chengze Li</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cse.cuhk.edu.hk/~ttwong/">Tien-Tsin Wong</a><sup>4</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Centre for Perceptual and Interactive Intelligence,</span>
+            <span class="author-block"><sup>2</sup>The Chinese University of Hong Kong,</span>
+            <br/> 
+            <span class="author-block"><sup>3</sup>Saint Francis University,</span>
+            <span class="author-block"><sup>4</sup>Monash University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://cvpr2025"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/MS92/MangaSegmentation/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-desktop"></i>
+                  </span>
+                  <span>Huggingface</span>
+                </a>
+              </span>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="hero">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Manga, a popular form of multimodal artwork, has traditionally been overlooked in deep learning advancements due to the absence of a robust dataset and comprehensive annotation. Manga segmentation is the key to the digital migration of manga. There exists a significant domain gap between the manga and the natural images, that fails most existing learning-based methods. To address this gap, we introduce an augmented segmentation annotation for the Manga109 dataset, a collection of 109 manga volumes, that offers intricate artworks in a rich variety of styles. We introduce a detailed annotation that extends beyond the original simple bounding boxes to the segmentation masks with pixel-level precision. It provides object category, location, and instance information that can be used for semantic segmentation and instance segmentation. We also provide a comprehensive analysis of our annotation dataset from various aspects. We further measure the improvement of the state-of-the-art segmentation model after training it with our augmented dataset. The benefits of this augmented dataset are profound, with the potential to significantly enhance manga analysis algorithms and catalyze the novel development in digital art processing and cultural analytics. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src=""
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-3">Metadata Framework</h3>
+        <div class="content has-text-justified">
+          <p>We define six object categories: frame, text/dialog, onomatopoeia, character body, character face, and balloon. </p>
+          <img src="./static/images/metadata.png">
+        </div>
+        <h2 class="title is-3">Annotation Pipeline</h2>
+        <div class="content has-text-justified">
+          <p>
+          We first collected coarse segmentation annotations through existing methods and then refined them through iterative annotations with manual correction and automatic refinement.
+          </p>
+          <p>
+            <img src="./static/images/pipeline.png"></img>
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-3">Comparison with Existing Methods</h3>
+        <div class="content has-text-justified">
+          <img src="./static/images/results.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Potential Usage and Extension</h2>
+
+        <div class="content has-text-justified">
+          <p>Our pipeline and instance segmentation can also facilitate other applications, such as manga pose extraction.</p>
+          <img src="./static/images/pose.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{xie2025advancing,
+      title={Advancing Manga Analysis: Comprehensive Segmentation Annotations for the Manga109 Dataset}, 
+      author={Minshan Xie, Jian Lin, Hanyuan Liu, Chengze Li, and Tien-Tsin Wong},
+      booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+      year={2025},
+}</code></pre>
+  </div>
+</section>
+
+<section class="section" id="Ack">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgement</h2>
+    <p>We sincerely thank the Aizawa Yamakata Matsui Lab and the authors involved in the development of the Manga109 dataset that was essential to our research. 
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://cvpr2025">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://huggingface.co/datasets/MS92/MangaSegmentation" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>. The source code is based on <a
+            href="https://github.com/nerfies/nerfies.github.io">nerfies</a> project page. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
